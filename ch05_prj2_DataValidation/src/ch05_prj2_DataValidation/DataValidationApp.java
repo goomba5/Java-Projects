@@ -20,33 +20,16 @@ public class DataValidationApp {
 		
 		// travel time logic stuff
 		while(choice.equalsIgnoreCase("y")) {
-			double miles = 0.0;
-			double mph = 50.0;
 			double hours = 0;
 			double minutes = 0;
 			
 			// prompt user for input
 				
-				System.out.print("Enter miles: ");
-				if (sc.hasNextDouble()) {
-					 miles = sc.nextDouble();
-					 sc.nextLine();
-				} else {
-					System.out.print("Invalid entry. Please enter a valid number.\n");
-					sc.nextLine();
-					continue;
-				}
+				// enter the method for getting miles
+				double miles = getDouble(sc, "Enter miles: ", 0, 200);
 				
-//				System.out.print("Enter miles per hour: ");
-//				if (sc.hasNextDouble()){
-//					
-//					mph = sc.nextDouble();
-//					sc.nextLine();
-//				} else {
-//					System.out.print("Invalid entry. Please enter a valid number.");
-//					sc.nextLine();
-//					continue;
-//				}
+				// enter the method for getting mph
+				double mph = getDouble(sc, "Enter mph: ", 0, 200);
 				
 				// calculate the hours and minutes
 					hours = Math.round(miles / mph);
@@ -61,12 +44,41 @@ public class DataValidationApp {
 			System.out.println(); // new line for space
 			
 			// continue?
-			System.out.print("Continue? (y/n) \n");
+			System.out.print("Continue? (y/n) ");
 			choice = sc.next();
 	}
 		// goodbye
-					System.out.println("Thank you for using the travel time calculator." +
-					"\n" + "Goodbye!");
+		System.out.println(); // new line for space
+		System.out.print("Thank you for using the travel time calculator." +
+		"\n" + "Goodbye!");
 	}
+	
+	private static double getDouble(Scanner sc, String prompt, double min, double max) {
+		double x = 0.0;
+		boolean isValid = false;
+		
+		while(!isValid) {
+		
+		System.out.print(prompt);
+			if (sc.hasNextDouble()) {
+				 x = sc.nextDouble();
+				 isValid = true;
+			} else {
+				System.out.println("Invalid entry. Please enter a valid number.");
+			}
+			sc.nextLine();
+			
+			if (isValid && x <= 0) {
+				System.out.println("Invalid entry. Number must be greater than 0.");
+				isValid = false;
+			} else if (isValid && x > 200) {
+				System.out.println("Invalid entry. Number must be less than 200.");
+				isValid = false;
+			}
+		}
+		return x;
+	}
+	
+	
 
 }
