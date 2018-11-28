@@ -127,7 +127,8 @@ public class Calculator {
 						"1 - Sum of Two Integers" + "\n" +
 						"2 - Sum of Three Integers" + "\n" +
 						"3 - Sum of Two Doubles" + "\n" +
-						"4 - Sum of Three Doubles" + "\n";
+						"4 - Sum of Three Doubles" + "\n" +
+						"5 - Exit the Aperture Science App" + "\n";
 		
 		return menu;
 	}

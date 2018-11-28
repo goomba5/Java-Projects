@@ -86,17 +86,10 @@ public class CalculatorApp {
                 System.out.println("The sum of the numbers you entered is " + dblSum);
                 System.out.println();
                 
-        	} else {
-        		System.out.println("Invalid entry. Please choose one of the menu options.");
+        	} else if (menuNum == 5) {
+        		break;
+        		
         	}
-
-//            // display the output for int
-//            System.out.println("The sum of the numbers you entered is " + sum);
-//            System.out.println();
-//            
-//            // display the output for double
-//            System.out.println("The sum of the numbers you entered is " + dblSum);
-//            System.out.println();
 
             // see if the user wants to continue
             System.out.print("Continue? (y/n): ");
