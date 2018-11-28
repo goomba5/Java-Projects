@@ -10,7 +10,8 @@ public class ContactDB {
 				"-" + " gary" + "\n" +
 				"-" + " mike" + "\n" +
 				"-" + " sean" + "\n" +
-				"-" + " gordon" + "\n";
+				"-" + " gordon" + "\n" +
+				"-" + " glados" + "\n";
 		
 		return names;
 	}
@@ -45,6 +46,11 @@ public class ContactDB {
 	        contact.setEmail("gfreeman@blackmesa.org");
 	        contact.setPhoneNumber("xxx-xxx-xxxx");
 	        
+	    } else if (firstName.equalsIgnoreCase("glados")) {
+	    	contact.setFirstName("GLaDOS");
+	    	contact.setLastName("");
+	        contact.setEmail("neurotoxin@thecakeisalie.org");
+	        contact.setPhoneNumber("xxx-xxx-xxxx"); 
 	    } else {
 	        contact.setFirstName("Unknown");
 	    }
