@@ -2,6 +2,19 @@ package ch07_prj1_ContactList;
 
 public class ContactDB {
 	
+	public static String getContactList() {
+		String names = " ";
+
+		// display contacts
+		names=  "Current list of contacts:\n" +
+				"-" + " gary" + "\n" +
+				"-" + " mike" + "\n" +
+				"-" + " sean" + "\n" +
+				"-" + " gordon" + "\n";
+		
+		return names;
+	}
+	
 	public static Contact getContact(String firstName) {
 	
 	// create Contact object

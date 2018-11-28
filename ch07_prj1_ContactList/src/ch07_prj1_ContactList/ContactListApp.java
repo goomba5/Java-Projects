@@ -5,16 +5,20 @@ import java.util.Scanner;
 public class ContactListApp {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
         // display a welcome message
         System.out.println("Welcome to the Aperture Science Contact Selection Application");
         System.out.println();
 
-        // display contacts
+        // create scanner object
         @SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
+        
         String choice = "y";
         while (choice.equalsIgnoreCase("y")) {
+        	
+            // current contact list
+            System.out.println(ContactDB.getContactList());
         	
             // get the input from the user
             System.out.print("Please enter the contact's name you wish to view: ");
@@ -38,7 +42,6 @@ public class ContactListApp {
             System.out.println();
         }
         // goodbye
-//        System.out.println();
         System.out.println("Thank you for using the Aperture Science Contact Selection Application");
         System.out.println("Goodbye!");
 	}
