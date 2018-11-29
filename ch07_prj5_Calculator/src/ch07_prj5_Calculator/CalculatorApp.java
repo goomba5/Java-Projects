@@ -98,10 +98,11 @@ public class CalculatorApp {
         }
         
         // goodbye
-        System.out.println("Thank you for using the Aperture Science Contact Selection Application");
+        System.out.println("Thank you for using the Aperture Science Class Calculator Application");
         System.out.println("Goodbye!");
 
 	}
+	
 	public static int getInt(Scanner sc, String prompt) {
 		int x = 0;
 		boolean isValid = false;
