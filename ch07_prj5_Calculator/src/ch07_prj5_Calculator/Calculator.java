@@ -13,35 +13,7 @@ public class Calculator {
 	private double dblNum3;
 	
 	public Calculator() {
-		this.menuNum = menuNum;
-		this.intNum1 = intNum1;
-		this.intNum2 = intNum2;
-	}
-	
-	public Calculator(int menuNum, int intNum1, int intNum2) {
-		this.menuNum = menuNum;
-		this.intNum1 = intNum1;
-		this.intNum2 = intNum2;
-	}
-	
-	public Calculator(int menuNum, int intNum1, int intNum2, int intNum3) {
-		this.menuNum = menuNum;
-		this.intNum1 = intNum1;
-		this.intNum2 = intNum2;
-		this.intNum3 = intNum3;
-	}
-	
-	public Calculator(double dblNum1, double dblNum2) {
-		this.menuNum = menuNum;
-		this.dblNum1 = dblNum1;
-		this.dblNum2 = dblNum2;
-	}
-	
-	public Calculator(double dblNum1, double dblNum2, double dblNum3) {
-		this.menuNum = menuNum;
-		this.dblNum1 = dblNum1;
-		this.dblNum2 = dblNum2;
-		this.dblNum3 = dblNum3;
+		super();
 	}
 	
 	public int getMenuNum() {
