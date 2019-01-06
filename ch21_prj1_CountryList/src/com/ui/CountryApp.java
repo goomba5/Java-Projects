@@ -3,7 +3,6 @@ package com.ui;
 import java.sql.SQLException;
 import java.util.List;
 import com.db.CountryDB;
-
 import business.Country;
 import util.Console;
 
@@ -41,6 +40,25 @@ public class CountryApp {
 						e.printStackTrace();
 					}
 				}
+			else if(choice == 2) {
+				
+				// prompt user for country info
+				String name = console.getString("Country name: ");
+				
+				// add new country to Country object
+				Country c = new Country(0, name);
+				
+				// within try-catch, print that the country was successfully added
+				try {
+					if(cdb.addCountry(c)) {
+						System.out.println("Country successfully added to the DB!");
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println("Error adding country to DB.");
+					e.printStackTrace();
+				}
+			}
 			}
 			System.out.println(); // new line for space
 			System.out.println("Thank you for using the Country Managing App Mobobber.\nGoodbye!");

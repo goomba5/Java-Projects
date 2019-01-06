@@ -42,11 +42,24 @@ public class CountryDB {
 		return country;
 	} // getCountries brace
 	
-	public List<Country> addCountry() throws SQLException{
-		List<Country> country = new ArrayList<>();
+	public boolean addCountry(Country c) throws SQLException{
 		
 		Connection connect = getConnection();
+		boolean successful = false;
+		
+		// create SQL query string
+		String query = "INSERT INTO Country" +
+				   "(id, name)" +
+				   "VALUES('"+ c.getId()+ "', '"+c.getName()+"')";
+		
 		Statement statement = connect.createStatement();
-		return country;
+		int rowCount = statement.executeUpdate(query);
+		
+		if(rowCount > 0) {
+			successful = true;
+		}
+		
+		
+		return successful;
 	} // addCountry brace
-}
+} // class brace
