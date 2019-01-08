@@ -49,6 +49,26 @@ public class CustomerApp {
 					e.printStackTrace();
 				}
 			}
+			else if(choice.equalsIgnoreCase("add")){
+				// prompt user for customer info
+				String email = console.getString("Enter customer email address: ");
+				String firstName = console.getString("Enter first name: ");
+				String lastName = console.getString("Enter last name: ");
+				
+				// add new country to Country object
+				Customer c = new Customer(0, firstName, lastName, email);
+				
+				// within try-catch, print that the country was successfully added
+				try {
+					if(cdb.addCustomer(c)) {
+						System.out.println(c.getFirstName() + " " + c.getLastName()+ " was successfully added to the database!");
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println("Error adding customer to DB.");
+					e.printStackTrace();
+				}
+			}
 			else if(choice.equalsIgnoreCase("exit")) {
 				System.out.println("Thank you for using the customer app\nGoodbye!");
 			}
