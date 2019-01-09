@@ -29,7 +29,9 @@ public class CustomerApp {
 			// retrieve user input
 			choice = console.getString("Enter a command: ");
 			
-			// options for the user
+			// *** options for the user ***
+			
+			// list of customers
 			if(choice.equalsIgnoreCase("list")) {
 				System.out.println("CUSTOMER LIST\n");
 				

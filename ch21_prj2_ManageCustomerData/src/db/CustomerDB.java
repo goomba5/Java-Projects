@@ -2,9 +2,9 @@ package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import business.Customer;
@@ -24,8 +24,9 @@ public class CustomerDB {
 		List<Customer> customer = new ArrayList<>();
 		
 		Connection connect = getConnection();
-		Statement statement = connect.createStatement();
-		ResultSet rs = statement.executeQuery("SELECT * FROM Customer");
+		String sql = "SELECT * FROM Customer";
+		PreparedStatement ps = connect.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
 		
 		while(rs.next()) {
 				
@@ -50,11 +51,16 @@ public class CustomerDB {
 		// create SQL query string
 		String query = "INSERT INTO Customer" +
 				   "(CustomerID, FirstName, LastName, EmailAddress)" +
-				   "VALUES('" + c.getId() + "', '"+ c.getFirstName() + "', '" 
-				   			  + c.getLastName() + "', '"+ c.getEmail() + "')";
+				   "VALUES(?, ?, ?, ?)";
 		
-		Statement statement = connect.createStatement();
-		int rowCount = statement.executeUpdate(query);
+		PreparedStatement ps = connect.prepareStatement(query);
+		// prepared statements
+		ps.setInt(1, c.getId());
+		ps.setString(2, c.getFirstName());
+		ps.setString(3, c.getLastName());
+		ps.setString(4, c.getEmail());
+		
+		int rowCount = ps.executeUpdate();
 		
 		if(rowCount > 0) {
 			successful = true;
@@ -68,9 +74,12 @@ public class CustomerDB {
 			Connection connect = getConnection();
 			boolean successful = false;
 			
-			String query = "DELETE FROM Customer WHERE EmailAddress = '" + c.getEmail()+ "'";
-			Statement statement = connect.createStatement();
-			int rowCount = statement.executeUpdate(query);
+			String query = "DELETE FROM Customer WHERE EmailAddress = ?";
+			PreparedStatement ps = connect.prepareStatement(query);
+			
+			// prepared statements
+			ps.setString(1, c.getEmail());
+			int rowCount = ps.executeUpdate();
 			
 			if(rowCount > 0) {
 				successful = true;
