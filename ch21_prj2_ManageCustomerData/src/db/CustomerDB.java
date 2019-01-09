@@ -40,7 +40,7 @@ public class CustomerDB {
 				customer.add(c);
 		}
 		return customer;
-	} // getCountries brace
+	}
 	
 	public boolean addCustomer(Customer c) throws SQLException{
 		
@@ -62,5 +62,21 @@ public class CustomerDB {
 		
 		
 		return successful;
-	} // addCountry brace
-}
+	}
+	
+	public boolean deleteCustomer(Customer c) throws SQLException {
+			Connection connect = getConnection();
+			boolean successful = false;
+			
+			String query = "DELETE FROM Customer WHERE EmailAddress = '" + c.getEmail()+ "'";
+			Statement statement = connect.createStatement();
+			int rowCount = statement.executeUpdate(query);
+			
+			if(rowCount > 0) {
+				successful = true;
+			}
+			
+			
+			return successful;
+		}
+	}

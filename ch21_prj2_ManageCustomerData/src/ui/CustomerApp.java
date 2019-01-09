@@ -49,19 +49,22 @@ public class CustomerApp {
 					e.printStackTrace();
 				}
 			}
+			// add customer
 			else if(choice.equalsIgnoreCase("add")){
+				
 				// prompt user for customer info
 				String email = console.getString("Enter customer email address: ");
 				String firstName = console.getString("Enter first name: ");
 				String lastName = console.getString("Enter last name: ");
 				
-				// add new country to Country object
+				// add new customer to Customer object
 				Customer c = new Customer(0, firstName, lastName, email);
 				
-				// within try-catch, print that the country was successfully added
+				// within try-catch, print that the customer was successfully added
 				try {
 					if(cdb.addCustomer(c)) {
-						System.out.println(c.getFirstName() + " " + c.getLastName()+ " was successfully added to the database!");
+						System.out.println(c.getFirstName() + " " + c.getLastName()+ 
+										   " was successfully added to the database!");
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -69,6 +72,32 @@ public class CustomerApp {
 					e.printStackTrace();
 				}
 			}
+			// delete a customer
+			else if(choice.equalsIgnoreCase("del")) {
+				try {
+					// create customers instance
+					List<Customer> customers = cdb.getCustomers();
+					
+					// retrieve user input
+					String userInput = console.getString("Enter email for customer to delete: ");
+					
+						// loop through the customers and delete the matching person
+						for(Customer c: customers) {
+							if(userInput.equalsIgnoreCase(c.getEmail())) {
+								if(cdb.deleteCustomer(c)) {
+									System.out.println(c.getFirstName() + " " + c.getLastName() + 
+													   " was deleted from the database.");
+								}
+							}
+						}
+					}
+				 catch (SQLException e) {
+					System.out.println("Exception occurred getting the chosen customer.");
+					e.printStackTrace();
+				}
+				
+			}
+			// exit the application
 			else if(choice.equalsIgnoreCase("exit")) {
 				System.out.println("Thank you for using the customer app\nGoodbye!");
 			}
