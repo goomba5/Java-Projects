@@ -23,7 +23,7 @@ public class UserDB {
 		}
 		
 	}
-
+	
 	public static List<User> getAll() {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		List<User> users = new ArrayList<>();
@@ -37,6 +37,40 @@ public class UserDB {
 			//DBUtil.closeEMF();
 		}
 		return users;
+	}
+	
+	public static boolean addUser(User user){
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		List<User> users = new ArrayList<>();
+		boolean successful = false;
+		trans.begin();
+		try {
+			em.persist(user);
+			trans.commit();
+			successful = true;
+		}
+		finally {
+			em.close();
+		}
+		return successful;
+	}
+	
+	public static boolean updateUser(User user) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin();
+		boolean successful = false;
+		try {
+			em.merge(user);
+			trans.commit();
+			successful = true;
+		}
+		finally {
+			em.close();
+			//DBUtil.closeEMF();
+		}
+		return successful;
 	}
 	
 	public static boolean deleteUser(User u) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import db.DBUtil;
@@ -36,5 +37,43 @@ public class VendorDB {
 			//DBUtil.closeEMF();
 		}
 		return users;
+	}
+	
+	public static boolean addVendor(Vendor vendor){
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		List<Vendor> vendors = new ArrayList<>();
+		boolean successful = false;
+		trans.begin();
+		try {
+			em.persist(vendor);
+			trans.commit();
+			successful = true;
+		}
+		finally {
+			em.close();
+		}
+		return successful;
+	}
+	
+	public static boolean deleteVendor(Vendor v) {
+		boolean successful = false;
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin();
+		try {
+			em.merge(v);
+			em.remove(v);
+			trans.commit();
+			successful = true;
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			trans.rollback();
+		}
+		finally {
+			em.close();
+		}
+		return successful;
 	}
 }

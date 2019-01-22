@@ -13,10 +13,10 @@ public class PurchaseRequest {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name="userID")
-	private User user;
-//	private int userID;
+//	@ManyToOne
+//	@JoinColumn(name="userID")
+//	private User user;
+	private int userID;
 	
 	private String description;
 	private String justification;
@@ -31,11 +31,11 @@ public class PurchaseRequest {
 		super();
 	}
 
-	public PurchaseRequest(int id, User user, String description, String justification, String dateNeeded,
+	public PurchaseRequest(int id, int userID, String description, String justification, String dateNeeded,
 			String deliveryMode, String status, double total, String submittedDate, String rejectionReason) {
 		super();
 		this.id = id;
-		this.user = user;
+		this.userID = userID;
 		this.description = description;
 		this.justification = justification;
 		this.dateNeeded = dateNeeded;
@@ -54,12 +54,12 @@ public class PurchaseRequest {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public int getUserID() {
+		return userID;
 	}
 
-	public void setUserID(User user) {
-		this.user = user;
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
 
 	public String getDescription() {
@@ -128,7 +128,7 @@ public class PurchaseRequest {
 
 	@Override
 	public String toString() {
-		return "PurchaseRequest [id=" + id + ", user=" + user + ", description=" + description + ", justification="
+		return "PurchaseRequest [id=" + id + ", userID=" + userID + ", description=" + description + ", justification="
 				+ justification + ", dateNeeded=" + dateNeeded + ", deliveryMode=" + deliveryMode + ", status=" + status
 				+ ", total=" + total + ", submittedDate=" + submittedDate + ", rejectionReason=" + rejectionReason
 				+ "]";

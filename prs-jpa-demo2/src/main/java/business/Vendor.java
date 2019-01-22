@@ -1,9 +1,14 @@
 package business;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Vendor {
@@ -11,6 +16,7 @@ public class Vendor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	private String code;
 	private String name;
 	private String address;
 	private String city;
@@ -19,14 +25,18 @@ public class Vendor {
 	private String phoneNumber;
 	private String email;
 	
+//	@OneToMany(fetch=FetchType.LAZY)
+//	private List<Product> products;
+	
 	public Vendor() {
 		super();
 	}
 
-	public Vendor(int id, String name, String address, String city, String state, String zipCode, String phoneNumber,
+	public Vendor(int id, String code, String name, String address, String city, String state, String zipCode, String phoneNumber,
 			String email) {
 		super();
 		this.id = id;
+		this.code = code;
 		this.name = name;
 		this.address = address;
 		this.city = city;
@@ -42,6 +52,14 @@ public class Vendor {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getName() {
@@ -102,7 +120,7 @@ public class Vendor {
 
 	@Override
 	public String toString() {
-		return "Vendor [id=" + id + ", name=" + name + ", address=" + address + ", city=" + city + ", state=" + state
+		return "Vendor [id=" + id + " , code=" + code+ ", name=" + name + ", address=" + address + ", city=" + city + ", state=" + state
 				+ ", zipCode=" + zipCode + ", phoneNumber=" + phoneNumber + ", email=" + email + "]";
 	}
 

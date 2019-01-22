@@ -13,10 +13,10 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-//	private int vendorID;
-	@ManyToOne
-	@JoinColumn(name="vendorID")
-	private Vendor vendor;
+	private int vendorID;
+//	@ManyToOne
+//	@JoinColumn(name="vendorID")
+//	private Vendor vendor;
 	private String partNumber;
 	private String name;
 	private double price;
@@ -27,11 +27,11 @@ public class Product {
 		super();
 	}
 	
-	public Product(int id, Vendor vendor, String partNumber, String name, double price, String unit, String photoPath) {
+	public Product(int id, int vendorID, String partNumber, String name, double price, String unit, String photoPath) {
 		super();
 		this.id = id;
-//		this.vendorID = vendorID;
-		this.vendor = vendor;
+		this.vendorID = vendorID;
+//		this.vendor = vendor;
 		this.partNumber = partNumber;
 		this.name = name;
 		this.price = price;
@@ -47,12 +47,12 @@ public class Product {
 		this.id = id;
 	}
 
-	public Vendor getVendor() {
-		return vendor;
+	public int getVendorID() {
+		return vendorID;
 	}
 
-	public void setVendor(Vendor vendor) {
-		this.vendor = vendor;
+	public void setVendorID(int vendorID) {
+		this.vendorID = vendorID;
 	}
 
 	public String getPartNumber() {
@@ -97,7 +97,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", vendor=" + vendor + ", partNumber=" + partNumber + ", name=" + name
+		return "Product [id=" + id + ", vendorID=" + vendorID + ", partNumber=" + partNumber + ", name=" + name
 				+ ", price=" + price + ", unit=" + unit + ", photoPath=" + photoPath + "]";
 	}
 	

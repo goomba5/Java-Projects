@@ -14,15 +14,15 @@ public class PurchaseRequestLineItem {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name="purchaseRequestID")
-//	private int purchaseRequestID;
-	private PurchaseRequest purchaseRequest;
+//	@ManyToOne
+//	@JoinColumn(name="purchaseRequestID")
+	private int purchaseRequestID;
+//	private PurchaseRequest purchaseRequest;
 	
-	@ManyToOne
-	@JoinColumn(name="productID")
-	private Product product;
-//	private int productID;
+//	@ManyToOne
+//	@JoinColumn(name="productID")
+//	private Product product;
+	private int productID;
 	
 	private int quantity;
 	
@@ -30,11 +30,11 @@ public class PurchaseRequestLineItem {
 		super();
 	}
 
-	public PurchaseRequestLineItem(int id, PurchaseRequest purchaseRequest, Product product, int quantity) {
+	public PurchaseRequestLineItem(int id, int purchaseRequestID, int productID, int quantity) {
 		super();
 		this.id = id;
-		this.purchaseRequest = purchaseRequest;
-		this.product = product;
+		this.purchaseRequestID = purchaseRequestID;
+		this.productID = productID;
 		this.quantity = quantity;
 	}
 
@@ -46,20 +46,20 @@ public class PurchaseRequestLineItem {
 		this.id = id;
 	}
 
-	public PurchaseRequest getPurchaseRequest() {
-		return purchaseRequest;
+	public int getPurchaseRequestID() {
+		return purchaseRequestID;
 	}
 
-	public void setPurchaseRequest(PurchaseRequest purchaseRequest) {
-		this.purchaseRequest = purchaseRequest;
+	public void setPurchaseRequestID(int purchaseRequestID) {
+		this.purchaseRequestID = purchaseRequestID;
 	}
 
-	public Product getProduct() {
-		return product;
+	public int getProduct() {
+		return productID;
 	}
 
 	public void setProductID(int productID) {
-		this.product = product;
+		this.productID = productID;
 	}
 
 	public int getQuantity() {
@@ -72,7 +72,7 @@ public class PurchaseRequestLineItem {
 
 	@Override
 	public String toString() {
-		return "PurchaseLineItem [id=" + id + ", purchaseRequest=" + purchaseRequest + ", product=" + product
+		return "PurchaseLineItem [id=" + id + ", purchaseRequestID=" + purchaseRequestID + ", productID=" + productID
 				+ ", quantity=" + quantity + "]";
 	}
 	
