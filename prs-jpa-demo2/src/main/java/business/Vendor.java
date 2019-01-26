@@ -21,18 +21,18 @@ public class Vendor {
 	private String address;
 	private String city;
 	private String state;
-	private String zipCode;
+	private String zip;
 	private String phoneNumber;
 	private String email;
 	
-//	@OneToMany(fetch=FetchType.LAZY)
-//	private List<Product> products;
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="vendor")
+	private List<Product> products;
 	
 	public Vendor() {
 		super();
 	}
 
-	public Vendor(int id, String code, String name, String address, String city, String state, String zipCode, String phoneNumber,
+	public Vendor(int id, String code, String name, String address, String city, String state, String zip, String phoneNumber,
 			String email) {
 		super();
 		this.id = id;
@@ -41,7 +41,7 @@ public class Vendor {
 		this.address = address;
 		this.city = city;
 		this.state = state;
-		this.zipCode = zipCode;
+		this.zip = zip;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 	}
@@ -94,12 +94,12 @@ public class Vendor {
 		this.state = state;
 	}
 
-	public String getZipCode() {
-		return zipCode;
+	public String getZip() {
+		return zip;
 	}
 
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
+	public void setZip(String zip) {
+		this.zip = zip;
 	}
 
 	public String getPhoneNumber() {
@@ -121,7 +121,7 @@ public class Vendor {
 	@Override
 	public String toString() {
 		return "Vendor [id=" + id + " , code=" + code+ ", name=" + name + ", address=" + address + ", city=" + city + ", state=" + state
-				+ ", zipCode=" + zipCode + ", phoneNumber=" + phoneNumber + ", email=" + email + "]";
+				+ ", zip=" + zip + ", phoneNumber=" + phoneNumber + ", email=" + email + "]";
 	}
 
 }

@@ -62,8 +62,9 @@ public class ProductDB {
 		EntityTransaction trans = em.getTransaction();
 		trans.begin();
 		try {
-			em.merge(p);
-			em.remove(p);
+			Product product = em.find(Product.class, p.getId());
+			em.merge(product);
+			em.remove(product);
 			trans.commit();
 			successful = true;
 		}

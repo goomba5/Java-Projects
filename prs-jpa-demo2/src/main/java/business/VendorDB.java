@@ -42,7 +42,6 @@ public class VendorDB {
 	public static boolean addVendor(Vendor vendor){
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
-		List<Vendor> vendors = new ArrayList<>();
 		boolean successful = false;
 		trans.begin();
 		try {
@@ -62,8 +61,9 @@ public class VendorDB {
 		EntityTransaction trans = em.getTransaction();
 		trans.begin();
 		try {
-			em.merge(v);
-			em.remove(v);
+			Vendor vendor = em.find(Vendor.class, v.getId());
+			em.merge(vendor);
+			em.remove(vendor);
 			trans.commit();
 			successful = true;
 		}

@@ -65,8 +65,9 @@ public class PurchaseRequestDB {
 		EntityTransaction trans = em.getTransaction();
 		trans.begin();
 		try {
-			em.merge(p);
-			em.remove(p);
+			PurchaseRequest pr = em.find(PurchaseRequest.class, p.getId());
+			em.merge(pr);
+			em.remove(pr);
 			trans.commit();
 			successful = true;
 		}
@@ -80,21 +81,21 @@ public class PurchaseRequestDB {
 		return successful;
 	}
 	
-	public static boolean recalculateTotal() {
-		boolean successful = false;
-		List<PurchaseRequestLineItem> prli = PurchaseLineItemDB.getAll();
-		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		EntityTransaction trans = em.getTransaction();
-		trans.begin();
-		try {
-			for(PurchaseRequestLineItem p: prli) {
-				
-			}
-		}
-		finally {
-			
-		}
-		
-		return successful;
-	}
+//	public static boolean recalculateTotal() {
+//		boolean successful = false;
+//		List<PurchaseRequestLineItem> prli = PurchaseLineItemDB.getAll();
+//		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//		EntityTransaction trans = em.getTransaction();
+//		trans.begin();
+//		try {
+//			for(PurchaseRequestLineItem p: prli) {
+//				if(PurchaseRequestDB.getPurchaseRequestById(prID) == PurahseLineItemDB.)
+//			}
+//		}
+//		finally {
+//			
+//		}
+//		
+//		return successful;
+//	}
 }

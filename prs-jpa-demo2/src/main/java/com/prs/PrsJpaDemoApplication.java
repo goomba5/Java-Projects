@@ -19,6 +19,7 @@ import business.Vendor;
 import business.VendorDB;
 import util.Console;
 
+@SpringBootApplication
 public class PrsJpaDemoApplication {
 
 	public static void main(String[] args) {
@@ -198,17 +199,25 @@ public class PrsJpaDemoApplication {
 				}
 				else if(o == 12) {
 					// add a product
+					int vendorID = con.getInt("Enter the vendor ID: ");
 					String partNumber = con.getString("Enter new part number: ");
 					String name = con.getString("Enter product name: ");
 					double price = con.getDouble("Enter the price: ");
 					String unit = con.getString("Enter unit: ");
 					String photoPath = con.getString("Enter photo path: ");
+					Product product = new Product();
+					Vendor vendor = VendorDB.getVendorById(vendorID);
 					
-					Product product = new Product(0, 0, partNumber, name, price, unit, photoPath);
+					product.setVendor(vendor);
+					product.setPartNumber(partNumber);
+					product.setName(name);
+					product.setPrice(price);
+					product.setUnit(unit);
+					product.setPhotoPath(photoPath);
 					
-					ProductDB.addProduct(product);
-					
-					System.out.println("The following product has been added: " + name);
+					if(ProductDB.addProduct(product)) {
+						System.out.println("The following product has been added: " + name);
+					}
 				}
 				else if (o == 13) {
 					// delete a product
@@ -247,17 +256,19 @@ public class PrsJpaDemoApplication {
 				}
 				else if(o == 16) {
 					// add new purchase request
+					int userID = con.getInt("Enter user ID: ");
 					String description = con.getString("Enter description: ");
 					String justification = con.getString("Enter justification: ");
 					String dateNeeded = con.getString("Enter date needed: ");
 					String deliveryMode = con.getString("Enter the delivery mode: ");
 					String status = con.getString("Enter the status: ");
 					double total = con.getDouble("Enter the total: ");
-					String unit = con.getString("Enter unit: ");
-					String photoPath = con.getString("Enter photo path: ");
+					String submittedDate = con.getString("Enter the submission date: ");
+					String rejectionReason = con.getString("Enter the rejection reason: ");
+					User user = UserDB.getUserById(userID);
 					
-					PurchaseRequest pr = new PurchaseRequest(0, 0, description, justification, dateNeeded, 
-										 deliveryMode, status, total, unit, photoPath);
+					PurchaseRequest pr = new PurchaseRequest(0, user, description, justification, dateNeeded, 
+										 deliveryMode, status, total, submittedDate, rejectionReason);
 					
 					PurchaseRequestDB.addPurchaseRequest(pr);
 					
@@ -290,6 +301,7 @@ public class PrsJpaDemoApplication {
 					}
 				}
 				else if(o == 19) {
+					// get prli by ID
 					o = con.getInt("Enter purchase request line item ID: ");
 					
 					PurchaseRequestLineItem prli = PurchaseLineItemDB.getPRLIById(o);
@@ -298,13 +310,17 @@ public class PrsJpaDemoApplication {
 				}
 				else if(o == 20) {
 					// add new purchase line item
+					int prID = con.getInt("Enter purchase request ID: ");
+					int productID = con.getInt("Enter product ID: ");
 					int quantity = con.getInt("Enter quantity: ");
+					PurchaseRequest pr = PurchaseRequestDB.getPurchaseRequestById(prID);
+					Product product = ProductDB.getProductById(productID);
 					
-					PurchaseRequestLineItem prli = new PurchaseRequestLineItem(0, 0, 0, quantity);
+					PurchaseRequestLineItem prli = new PurchaseRequestLineItem (0, pr, product, quantity);
 					
 					PurchaseLineItemDB.addPRLI(prli);
 					
-					System.out.println("Your new purchase request has been added.");
+					System.out.println("Your new purchase request line item has been added.");
 				}
 				else if(o == 21) {
 					// delete purchase request line item

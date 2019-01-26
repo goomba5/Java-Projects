@@ -42,7 +42,6 @@ public class UserDB {
 	public static boolean addUser(User user){
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
-		List<User> users = new ArrayList<>();
 		boolean successful = false;
 		trans.begin();
 		try {
@@ -79,8 +78,9 @@ public class UserDB {
 		EntityTransaction trans = em.getTransaction();
 		trans.begin();
 		try {
-			em.merge(u);
-			em.remove(u);
+			User user = em.find(User.class, u.getId());
+			em.merge(user);
+			em.remove(user);
 			trans.commit();
 			successful = true;
 		}

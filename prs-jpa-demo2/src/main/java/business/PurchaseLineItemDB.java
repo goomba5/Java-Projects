@@ -61,8 +61,9 @@ public class PurchaseLineItemDB {
 		EntityTransaction trans = em.getTransaction();
 		trans.begin();
 		try {
-			em.merge(p);
-			em.remove(p);
+			PurchaseRequestLineItem prli = em.find(PurchaseRequestLineItem.class, p.getId());
+			em.merge(prli);
+			em.remove(prli);
 			trans.commit();
 			successful = true;
 		}
