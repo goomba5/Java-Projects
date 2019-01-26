@@ -25,14 +25,14 @@ public class PurchaseRequest {
 	private String status;
 	private double total;
 	private String submittedDate;
-	private String rejectionReason;
+	private String reasonForRejection;
 	
 	public PurchaseRequest() {
 		super();
 	}
 
 	public PurchaseRequest(int id, User user, String description, String justification, String dateNeeded,
-			String deliveryMode, String status, double total, String submittedDate, String rejectionReason) {
+			String deliveryMode, String status, double total, String submittedDate, String reasonForRejection) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -43,7 +43,7 @@ public class PurchaseRequest {
 		this.status = status;
 		this.total = total;
 		this.submittedDate = submittedDate;
-		this.rejectionReason = rejectionReason;
+		this.reasonForRejection = reasonForRejection;
 	}
 
 	public int getId() {
@@ -118,19 +118,19 @@ public class PurchaseRequest {
 		this.submittedDate = submittedDate;
 	}
 
-	public String getRejectionReason() {
-		return rejectionReason;
+	public String getReasonForRejection() {
+		return reasonForRejection;
 	}
 
 	public void setRejectionReason(String rejectionReason) {
-		this.rejectionReason = rejectionReason;
+		this.reasonForRejection = reasonForRejection;
 	}
 
 	@Override
 	public String toString() {
 		return "PurchaseRequest [id=" + id + ", user=" + user + ", description=" + description + ", justification="
 				+ justification + ", dateNeeded=" + dateNeeded + ", deliveryMode=" + deliveryMode + ", status=" + status
-				+ ", total=" + total + ", submittedDate=" + submittedDate + ", rejectionReason=" + rejectionReason
+				+ ", total=" + total + ", submittedDate=" + submittedDate + ", reasonForRejection=" + reasonForRejection
 				+ "]";
 	}
 	
