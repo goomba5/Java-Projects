@@ -24,7 +24,6 @@ public class MovieListApp {
 			System.out.println("Choose from " + mIO.getMovies().size() + " movies.");
 			System.out.println("Categories: drama | musical | scifi | horror | comedy | animated");
 		
-			
 			String category = console.getString("Enter a category: ");
 			
 			ArrayList<Movie> filteredMovies = mIO.getMovies(category);

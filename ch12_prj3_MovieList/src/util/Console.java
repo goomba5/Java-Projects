@@ -12,7 +12,7 @@ public class Console {
 	        sc.nextLine();  // discard any other data entered on the line
 	        return s;
 	    }
-
+	    
 	    public int getInt(String prompt) {
 	        int i = 0;
 	        boolean isValid = false;
