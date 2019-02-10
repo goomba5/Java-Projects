@@ -21,6 +21,8 @@ public class MovingRatingsApp {
         int option;
         
         while (choice.equalsIgnoreCase("y")) {
+        	
+        	getMenu();
 
         	option = con.getInt("Enter an option: ");
         	
@@ -84,7 +86,6 @@ public class MovingRatingsApp {
 	}
 	
 	public static void getMenu() {
-		System.out.println("Choose an Option");
 		System.out.println("1 - View all movies");
 		System.out.println("2 - Number of Movies in the List");
 		System.out.println("3 - Add a movie");
@@ -93,6 +94,7 @@ public class MovingRatingsApp {
 		System.out.println("6 - Average Movie Rating");
 		System.out.println("7 - Movies Before 2010");
 		System.out.println("8 - Movies After 2010");
+		System.out.println();
 	}
 
 }
