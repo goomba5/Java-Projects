@@ -3,28 +3,62 @@ package movieRating;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 import movieRating.Movie;
 
 public class MovieCollection {
 	
 	private List<MovieCollection> movies;
 	
-	public static double getLowestRating(List<Movie> movies) {
+	public MovieCollection(List<MovieCollection> movies) {
+		super();
+		this.movies = movies;
+	}
+
+	public static List<Movie> getAllMovies(List<Movie> movies, Predicate<Movie> condition){
+		List<Movie> allMovies = new ArrayList<>();
 		
-		double lowestRating = movies.stream()
-				.map(m -> m.getRating())
-				.reduce(4.0, (a, b) -> Math.min(a, b));
+		for(Movie m: movies) {
+			if(condition.test(m)) {
+				allMovies.add(m);
+			}
+		}
+		allMovies.stream()
+		.forEach(str -> System.out.println(str.getTitle() + ", " + str.getRating()));
 		
-		return lowestRating;
+		return allMovies;
 	}
 	
-	public static double getHighestRating(List<Movie> movies) {
+	public static void add(Movie m) {
+	}
+	
+	public static void getSize(List<Movie> movies) {
+		System.out.println(movies.size());
+	}
+	
+	public static List<Movie> getLowestRated(List<Movie> movies, Predicate<Movie> condition) {
+
+		List<Movie> lowestRated = new ArrayList<>();
 		
-		double highestRating = movies.stream()
-				.map(m -> m.getRating())
-				.reduce(0.0, (a, b) -> Math.max(a, b));
+		for(Movie m: movies) {
+			if(condition.test(m)) {
+				lowestRated.add(m);
+			}
+		}
+		return lowestRated;
+	}
+	
+	public static List<Movie> getHighestRated(List<Movie> movies, Predicate<Movie> condition) {
 		
-		return highestRating;
+		List<Movie> highestRated = new ArrayList<>();
+		
+		for(Movie m: movies) {
+			if(condition.test(m)) {
+				highestRated.add(m);
+			}
+		}
+		return highestRated;
 	}
 	
 	public static double getAverageRating(List<Movie> movies) {
@@ -34,10 +68,6 @@ public class MovieCollection {
 				.average().getAsDouble();
 		
 		return averageRating;
-	}
-	
-	public void getSize(List<Movie> movies) {
-		System.out.println(movies.size());
 	}
 	
 	public static List<Movie> filterMovies(List<Movie> movies, Predicate<Movie> condition){
