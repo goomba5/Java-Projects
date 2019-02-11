@@ -42,7 +42,6 @@ public class MovingRatingsApp {
         			
         			movies.add(new Movie(title, year, rating));
         		}
-        		System.out.println();
         		System.out.println(movieNum + " movies were added to the database.");
         	}
         	// view top rated movies
@@ -54,7 +53,6 @@ public class MovingRatingsApp {
         		highestRating.stream()
         			.forEach(str -> System.out.println(str.getTitle() + " " + "("+  str.getYear() + ")" + 
         										   " " + "Rating: " +str.getRating()));
-        		
         	}
         	// view most recent movies
         	else if(option == 3) {
@@ -64,14 +62,12 @@ public class MovingRatingsApp {
         		List<Movie> moviesAfter = MovieCollection.filterMovies(movies, m -> m.getYear() > 2009);
         		moviesAfter.stream()
         		.forEach(str -> System.out.println(str.getTitle()));
-        		
         	}
         	if(option == 4) {
         	System.out.println();
-        	System.out.println("List of All Movies");
-        	System.out.println("------------------");
-        	List<Movie> allMovies = MovieCollection.getAllMovies(movies, m -> m != null);
-        	
+	        	System.out.println("List of All Movies");
+	        	System.out.println("------------------");
+	        	List<Movie> allMovies = MovieCollection.getAllMovies(movies, m -> m != null);
         	}
         	else if(option == 5) {
         		List<Movie> lowestRating = MovieCollection.getLowestRated(movies, m -> m.getRating() < 3.0);
@@ -98,7 +94,7 @@ public class MovingRatingsApp {
         	System.out.println();
         	choice = con.getString("Continue? (y/n) ");
         }
-		System.out.println("Gooooodbyyyyyyyyyyye");
+		System.out.println("Thank you for using the Movie Ratings App.\nGoodbye!");
 	}
 	
 	public static void getMenu() {
